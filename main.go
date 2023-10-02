@@ -1,11 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		n, err := fmt.Fprintf(w, "Hello, World!")
+		fmt.Println(fmt.Sprintf("Wrote %d bytes", n))
+		if err == nil {
+			fmt.Println("No error")
+		} else {
+			fmt.Println(fmt.Sprintf("Error: %s", err))
+		}
+	})
 
-
-	http.HandlerFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf("Hello world!")
-}
+	_ = http.ListenAndServe(":8080", nil)
 }
