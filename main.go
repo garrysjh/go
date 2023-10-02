@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello World!")
-	var whatToSay string = "Goodbye World!"
-	fmt.Println(whatToSay)
+
+
+	http.HandlerFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf("Hello world!")
+}
 }
